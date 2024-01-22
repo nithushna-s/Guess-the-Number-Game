@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff; /* Light blue background color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin-bottom: 20%;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 8px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4caf50; /* Green button color */
+            color: #fff; /* White button text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        p {
+            color: #333;
+        }
+        #correctNumber {
+            color: #f44336; /* Red for the correct number */
+            display: none;
+        }
+        #message {
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Guess the Number Game</h1>
+        <p>Guess a number between 1 and 10:</p>
+        <input type="number" id="userGuess" min="1" max="100">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="message"></p>
+        <p id="correctNumber"></p>
+    </div>
+
+    <script>
+        let secretNumber;
+
+        // Function to start a new round
+        function startNewRound() {
+            // Generate a new random number
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+
+            // Hide the correct number message
+            document.getElementById('correctNumber').style.display = 'none';
+
+            // Clear the input and message
+            document.getElementById('userGuess').value = '';
+            document.getElementById('message').innerText = '';
+        }
+
+        // Function to check the user's guess
+        function checkGuess() {
+            // Get the user's guess
+            const userGuess = document.getElementById('userGuess').value;
+
+            // Display the correct number message
+            document.getElementById('correctNumber').innerText = `The correct number was ${secretNumber}.`;
+            document.getElementById('correctNumber').style.display = 'block';
+
+            if (userGuess == secretNumber) {
+                showMessage('Congratulations! You guessed the correct number. 🎉');
+            } else {
+                showMessage('Sorry, that\'s not the correct number. Try again! 😢');
+            }
+
+
+            // Start a new round after a delay (you can customize the delay)
+            setTimeout(startNewRound, 3000);
+        }
+
+        // Function to display a message
+        function showMessage(message) {
+            document.getElementById('message').innerText = message;
+        }
+
+        // Start the first round when the page loads
+        startNewRound();
+    </script>
+</body>
+</html>
