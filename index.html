@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color:white; 
+            background-color:black; 
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,45 +18,68 @@
             height: 100vh;
         }
         .card {
-            border: 1px solid #ccc;
+            border: 1px solid wheat;
             border-radius: 8px;
-            background-color:rgb(173, 242, 242); 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 5%;
-            width: 30%;
+            background-color:white; 
+            box-shadow:  4px 8px rgb(247, 247, 247);
+            padding: 3%;
+            width: 25%;
             margin-bottom: 20%;
         }
         h1 {
-            color: #333;
+            color: #000000;
         }
         input {
-         width: 50%;
+         width: 20%;
          height: 25%;
             margin: 10px;
+            text-align: center;
             font-size: larger;
+            border: 1px solid rgb(7, 0, 0);
+            box-shadow: 0 1px 8px black;
+        }
+        input:hover{
+            background-color:black;
+            color: white;
+            border: 1px solid rgb(5, 5, 5);
+            box-shadow: 0 4px 8px rgb(11, 11, 11);
         }
         button {
             padding: 10px;
-            background-color: #4caf50; 
+            background-color: #4f4c4c; 
             color: #fff; 
             border: none;
-            height: 25%;
+            height: 26%;
             border-radius: 4px;
             cursor: pointer;
+            border: 1px solid rgb(3, 3, 3);
+            box-shadow: 0 4px 8px rgb(15, 0, 0);
         }
         button:hover {
-            background-color: #45a049;
+            background-color: white;
+            border: 1px solid rgb(5, 5, 5);
+            box-shadow: 0 4px 8px rgb(11, 11, 11);
+            color: #000000;
+
         }
         p {
-            color: #333;
+            color: black;
         }
         #correctNumber {
-            color: #f44336; /* Red for the correct number */
+            color: #36f43c; 
             display: none;
         }
         #message {
-            color: #333;
+            color: rgb(245, 8, 8);
             font-weight: bold;
+        }
+        span{
+            color:green;
+            border: 1px solid rgb(5, 5, 5);
+            box-shadow: 0 2px 4px rgb(11, 11, 11);
+            padding: 2px;
+            font-weight:bold;
+            
         }
     </style>
 </head>
@@ -64,7 +87,7 @@
 
     <div class="card">
         <h1>Guess the Number Game</h1>
-        <p>Guess a number between 1 and 10:</p>
+        <p>Guess a number between  <span>1</span> and <span>10</span>:</p>
         <input type="number" id="userGuess" min="1" max="100">
         <button onclick="checkGuess()">Submit Guess</button>
         <p id="message"></p>
@@ -76,23 +99,17 @@
 
         // Function to start a new round
         function startNewRound() {
-            // Generate a new random number
             secretNumber = Math.floor(Math.random() * 10) + 1;
 
-            // Hide the correct number message
             document.getElementById('correctNumber').style.display = 'none';
 
-            // Clear the input and message
             document.getElementById('userGuess').value = '';
             document.getElementById('message').innerText = '';
         }
 
-        // Function to check the user's guess
         function checkGuess() {
-            // Get the user's guess
             const userGuess = document.getElementById('userGuess').value;
 
-            // Display the correct number message
             document.getElementById('correctNumber').innerText = `The correct number was ${secretNumber}.`;
             document.getElementById('correctNumber').style.display = 'block';
 
@@ -103,16 +120,13 @@
             }
 
 
-            // Start a new round after a delay (you can customize the delay)
             setTimeout(startNewRound, 3000);
         }
 
-        // Function to display a message
         function showMessage(message) {
             document.getElementById('message').innerText = message;
         }
 
-        // Start the first round when the page loads
         startNewRound();
     </script>
 </body>
